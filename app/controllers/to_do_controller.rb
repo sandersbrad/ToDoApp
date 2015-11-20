@@ -1,11 +1,15 @@
 class ToDoController < ApplicationController
 
   def index
-    @todos = ToDos.all
+    @todos = ToDo.all
+
+    render json: @todos
   end
 
   def show
-    @todo = ToDos.find(params[:id])
+    @todo = ToDo.find(params[:id])
+
+    render json: @todo
   end
 
   def create
@@ -36,6 +40,12 @@ class ToDoController < ApplicationController
     @todo = Todo.find(params[:id])
     @todo.destroy
     render :index
+  end
+
+  private
+
+  def todo_params
+    params.require(:property).permit(:title, :description, :date)
   end
 
 end
