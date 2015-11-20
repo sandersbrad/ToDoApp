@@ -7,24 +7,25 @@ class ToDoController < ApplicationController
   end
 
   def show
+    fail
     @todo = ToDo.find(params[:id])
 
     render json: @todo
   end
 
   def create
-    @todo = Todo.new(todo_params)
+    @todo = ToDo.new(todo_params)
 
     if @todo.save
       render :index
     else
-      flash.now[:errors] = @user.errors.full_messages
-      render :new
+      flash.now[:errors] = @todo.errors.full_messages
+      render :index
     end
   end
 
-  def edit
-    @todo = Todo.find(params[:id])
+  def update
+    @todo = ToDo.find(params[:id])
 
     @todo.update_attributes(todo_params)
 
@@ -37,7 +38,7 @@ class ToDoController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
+    @todo = ToDo.find(params[:id])
     @todo.destroy
     render :index
   end
@@ -45,7 +46,7 @@ class ToDoController < ApplicationController
   private
 
   def todo_params
-    params.require(:property).permit(:title, :description, :date)
+    params.require(:to_do).permit(:title, :description, :date)
   end
 
 end

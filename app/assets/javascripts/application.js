@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require to_do_app
+//= require_tree ./utils
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
