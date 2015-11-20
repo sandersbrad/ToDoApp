@@ -1,19 +1,15 @@
-ToDoApp.Views.Index = Backbone.Views.extend({
+ToDoApp.Views.Index = Backbone.View.extend({
 
   className: 'index-parent',
 
   initialize: function () {
-
+    this.listenTo(this.collection, 'sync', this.render)
   },
 
   template: JST['todos/index'],
 
   render: function () {
-    this.addToDos();
-  }
-
-  addToDos: function () {
-    var content = this.template({ properties: this.collection });
+    var content = this.template({ todos: this.collection });
     this.$el.html(content);
   }
 })

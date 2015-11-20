@@ -1,1 +1,7 @@
-<div class='index-parent'></div>
+<div>
+  <ul>
+  <% todos.forEach(function(todo) { %>
+    <li><h6> Title: <%= todo.escape('title') %> Description: <%= todo.escape('description') %></h6></li>
+  <% }) %>
+  </ul>
+</div>

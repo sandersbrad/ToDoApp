@@ -5,12 +5,14 @@ ToDoApp.Routers.Router = Backbone.Router.extend({
     this.collection = options.collection
   },
 
-  routes: function () {
+  routes: {
     '': 'index'
   },
 
   index: function () {
-    var view = new ToDoApp.Views.Index({ collection : this.collection })
+    var view = new ToDoApp.Views.Index({ collection: this.collection })
     this.collection.fetch()
+    this.$rootEl.html(view.$el)
+    view.render()
   }
 })

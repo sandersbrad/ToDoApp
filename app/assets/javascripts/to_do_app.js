@@ -4,6 +4,12 @@ window.ToDoApp = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    var collection = new ToDoApp.Collections.ToDos();
+    var $rootEl = $('#content');
+    new ToDoApp.Routers.Router({
+      collection: collection,
+      $rootEl: $rootEl
+    });
+    Backbone.history.start();
   }
 };
